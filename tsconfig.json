@@ -1,0 +1,24 @@
+{
+	"compilerOptions": {
+		"outDir": "./dist", // Output directory for compiled files
+		"target": "ES2020",
+		"useDefineForClassFields": true,
+		"lib": ["ES2020", "DOM", "DOM.Iterable"],
+		"module": "ESNext",
+		"skipLibCheck": true,
+		/* Bundler mode */
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		/* Linting */
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"esModuleInterop": true
+	},
+	"include": ["src/**/*.ts", "src/ts/index.ts"], // Specify the source files for the project
+	"exclude": ["node_modules/"]
+}
