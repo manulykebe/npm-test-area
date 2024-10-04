@@ -6,7 +6,6 @@ const data = [
     { name: 'publish to s3', parent: 'c', child: 'y' },
     { name: 'do quality check', parent: 'b', child: 'z' },
     { name: 'publish to s4', parent: 'c', child: undefined },
-
   ];
   
   // Step 1: Build a tree structure from the array and combine nodes with the same parent-child relation
@@ -79,17 +78,32 @@ const data = [
   function displayTreeWithLineLength(node, prefix = '', isLast = true, terminalIndex = {}, maxLength) {
     const isTerminal = node.children.length === 0;
     let terminalLabel = '';
+    let line = `${prefix}${isLast ? '└─' : '├─'} ${node.description}`;
   
     if (isTerminal) {
       const index = terminalIndex.current++;
       if (index === terminalIndex.total - 1) {
-        terminalLabel = ` * last (line length: ${maxLength})`; // Mark the last terminal node
+        terminalLabel = ` * last`; // Mark the last terminal node
       } else {
-        terminalLabel = ` * ${index + 1} (line length: ${maxLength})`; // Mark other terminal nodes with their index
+        terminalLabel = ` * ${index + 1}`; // Mark other terminal nodes with their index
+  
+      }
+      // Pad terminal lines with '─'
+      const paddingNeeded = maxLength - (line.length + terminalLabel.length);
+      if (paddingNeeded > 0) {
+        line += '─'.repeat(paddingNeeded);
+      }
+      line += terminalLabel;
+  
+    } else {
+      // Pad non-terminal lines with '.'
+      const paddingNeeded = maxLength - line.length;
+      if (paddingNeeded > 0) {
+        line += '.'.repeat(paddingNeeded);
       }
     }
   
-    console.log(`${prefix}${isLast ? '└─' : '├─'} ${node.description}${terminalLabel}`);
+    console.log(line);
   
     const newPrefix = prefix + (isLast ? '   ' : '│  ');
   
@@ -111,6 +125,6 @@ const data = [
   tree.forEach(root => collectTerminalNodes(root, terminalNodes));
   const terminalIndex = { current: 0, total: terminalNodes.length };
   
-  // Display the tree with the longest line length added to terminal nodes
+  // Display the tree with the longest line length added to terminal nodes and padded
   tree.forEach(root => displayTreeWithLineLength(root, '', true, terminalIndex, maxLengthObj.maxLength));
   
