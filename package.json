@@ -1,25 +1,28 @@
 {
-	"name": "npm-test-area",
-	"version": "1.0.0",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "rimraf dist && tsc",
-		"start": "npm run build && node dist/index.js"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
+	"name": "application",
 	"description": "",
-	"devDependencies": {
-		"rimraf": "^6.0.1",
-		"ts-loader": "^9.5.1",
-		"ts-node": "^10.9.2",
-		"typescript": "^5.6.2",
-		"webpack": "^5.95.0",
-		"webpack-cli": "^5.1.4"
+	"version": "0.0.1",
+	"type": "module",
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx,json,css,md}": "prettier --write"
 	},
-	"dependencies": {
-		"async-monitor.js": "file:./../async-monitor.js"
+	"scripts": {
+		"dev": "npm run format && vite",
+		"build": "npm run format && vite build",
+		"format": "prettier --write .",
+		"lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+		"prebuild": "npm run format && npm run lint",
+		"preview": "vite preview",
+		"update-package-lock": "rm -f package-lock.json && npm install",
+		"prepare": "husky install"
+	},
+	"devDependencies": {
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-prettier": "^5.2.1",
+		"husky": "^8.0.0",
+		"lint-staged": "^15.2.10",
+		"prettier": "^3.3.3",
+		"typescript": "^5.6.3",
+		"vite": "^5.4.10"
 	}
 }
