@@ -7,10 +7,10 @@
 		"*.{js,jsx,ts,tsx,json,css,md}": "prettier --write"
 	},
 	"scripts": {
-		"dev": "npm run format && vite",
-		"build": "npm run format && vite build",
+		"dev": "vite",
+		"build": "vite build",
 		"format": "prettier --write .",
-		"lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+		"lint": "eslint .",
 		"prebuild": "npm run format && npm run lint",
 		"preview": "vite preview",
 		"update-package-lock": "rm -f package-lock.json && npm install",
