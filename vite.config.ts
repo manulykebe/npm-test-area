@@ -2,7 +2,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig({
 	root: './',
-	base: './',
+	base: '/npm-test-area/',
 	publicDir: 'public',
 	build: {
 		outDir: 'docs',
