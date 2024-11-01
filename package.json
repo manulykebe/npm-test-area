@@ -10,6 +10,8 @@
 		"dev": "vite",
 		"build": "vite build",
 		"format": "prettier --write .",
+		"link:dev": "npm link async-monitor.js && npm list async-monitor.js",
+		"link:prod": "npm install async-monitor.js && npm list async-monitor.js",
 		"lint": "eslint .",
 		"prebuild": "npm run format && npm run lint",
 		"preview": "vite preview",
@@ -26,6 +28,6 @@
 		"vite": "^5.4.10"
 	},
 	"dependencies": {
-		"async-monitor.js": "^1.1.9"
+		"async-monitor.js": "^1.1.11"
 	}
 }
